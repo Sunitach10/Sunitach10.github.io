@@ -1,0 +1,34 @@
+---
+layout: post
+title:  "Generating Molecules using CharRNN "
+date: 2019-06-27
+comments: True
+mathjax: True
+---
+<h2>Generating Molecules using CharRNN </h2>
+
+Before you dig into details of Recurrent Neural networks, if you are a Beginner I suggest you to read about RNN.
+Note: To go through the article, you must have basic knowledge of neural networks and how Pytorch (a deep learning library) works. 
+You can refer the some articles to understand these concepts:
+In this post ,I am implementing a RNN model with Pytorch to generate SMILES.
+
+Now in this we will learn-
+ <ol>
+ <li>Why/what are Recurrent Neural Networks?</li>
+ <li> Character level RNN model</li>
+ <li>RNN for Molecules (SMILES) Generation</li>
+ <li>Generating SMILES using RNN's</li>
+ </ol>
+ <b>Recurrent Neural Networks-</b>The idea behind RNN's is to make use of sequential information. 
+ RNN's are used for sequential data, like audio or sentences, where the order of the data plays an important role.
+ What makes Recurrent Networks so special? The core reason that recurrent nets are more exciting is that they allow us to operate over sequences of vectors:
+   {% include image.html url="/assets/img/1rnn.png" description="Unrolled RNN Architecture" %}
+   
+ <b>Character-Level RNN Model:</b> Okay, so we have an idea about what RNNs are, why they are super exciting, and how they work. We’ll now ground this in a fun application: 
+ We’ll train RNN character-level RNN models. That is, we’ll give the RNN a huge chunk of data(Smiles representation of molecules)and ask it to model the 
+ probability distribution of the next character in the sequence given a sequence of previous characters. 
+ This will then allow us to generate new smiles one character at a time.
+ By the way, together with this post I am also releasing (code on Github…....link..................) that allows you to train char RNN model based on multi-layer LSTMs.
+ RNN for Molecules (SMILES) Generation- In this Post, we want to show that recurrent neural networks can be trained as generative models for molecular structures, 
+ similar to statistical language models in natural language processing. 
+ We demonstrate that the properties of the generated molecules correlate very well with the properties of the molecules used to train the model.
