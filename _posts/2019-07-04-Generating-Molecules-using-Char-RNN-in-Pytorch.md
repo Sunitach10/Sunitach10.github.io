@@ -189,3 +189,91 @@ def init_hidden(self, batch_size):
         
         return hidden
 ```
+<b>Part 3:</b> 
+We'll declare a function, where we'll define an optimizer(Adam) and loss (cross entropy loss). We then create the training and validation data and initialize the hidden state of the RNN. We'll loop over the training set, each time encoding the data into one-hot vectors, performing forward and backpropagation, and updating the gradients. please for full code visit our Github profile(<a href="https://github.com/bayeslabs/genmol/tree/Sunita/genmol/CharRNN/">please for full code visit our Github profile</a>)
+
+we'll have the method generate some loss statistics(training loss and validation loss) to let us know if the model is training correctly.
+Now, we'll just declare the hyper parameters for our model, create an instance for it, and train it!
+```python
+n_hidden=56
+n_layers=2 
+net = CharRNN(chars, n_hidden, n_layers)print(net) 
+# Declaring the hyperparameters
+batch_size = 32
+seq_length = 50
+n_epochs = 1 
+# start smaller if you are just testing initial behavior 
+train the modeltrain(net, encoded, epochs=n_epochs, batch_size=batch_size, seq_length=seq_length, lr=0.001,print_every=10000)
+```
+<b> Part 4:The prediction task </b>
+The input to the model will be a sequence of characters(smiles), and we train the model to predict the output - Since RNN's maintain an internal state that depends on the previously seen elements, given all the characters computed until this moment, what is the next character?After training, we'll create a method (function) to predict the next character from the trained RNN with forward propagation.''' Given a character, predict the next character.
+ Returns the predicted character and the hidden state.
+ ```python
+ def predict(net, char, h=None, top_k=None):
+        # tensor inputs
+        x = np.array([[net.char2int[char]]])
+        x = one_hot_encode(x, len(net.chars))
+        inputs = torch.from_numpy(x)
+        
+        if(train_on_gpu):
+            inputs = inputs.cuda()
+        
+        # detach hidden state from history
+        h = tuple([each.data for each in h])
+        # get the output of the model
+        out, h = net(inputs, h)
+# get the character probabilities
+        p = F.softmax(out, dim=1).data
+        if(train_on_gpu):
+            p = p.cpu() # move to cpu
+        
+        # get top characters
+        if top_k is None:
+            top_ch = np.arange(len(net.chars))
+        else:
+            p, top_ch = p.topk(top_k)
+            top_ch = top_ch.numpy().squeeze()
+        
+        # select the likely next character with some element of randomness
+        p = p.numpy().squeeze()
+        char = np.random.choice(top_ch, p=p/p.sum())
+        
+        # return the encoded value of the predicted char and the hidden state
+        return net.int2char[char], h
+ ```
+ Then, we'll define a sampling method that will use the previous method to generate an entire string of smiles, first using the characters in the first word (prime) and then using a loop to generate the next words using the top_kfunction, which chooses the letter with the highest probability to be next.
+ ```python
+ def sample(net, size, prime='The', top_k=None):
+        
+    if(train_on_gpu):
+        net.cuda()
+    else:
+        net.cpu()
+    
+    net.eval() # eval mode
+    
+    # First off, run through the prime characters
+    chars = [ch for ch in prime]
+    h = net.init_hidden(1)
+    for ch in prime:
+        char, h = predict(net, ch, h, top_k=top_k)
+chars.append(char)
+    
+    # Now pass in the previous character and get a new one
+    for ii in range(size):
+        char, h = predict(net, chars[-1], h, top_k=top_k)
+        chars.append(char)
+return ''.join(chars)
+    
+# Generating new text
+print(sample(net, 120, prime='A', top_k=5))
+ ```
+ Finally, we just call the method, define the size you want (I chose 120 characters) and the prime (I chose 'A') and get the result!
+ ```python
+ Final Output-
+A[N+](=O)[O-])[O-].Cl
+CCCOC(=O)C(NCc1ccc(F)cc1)c1ccccc1
+Cc1nc2ccc(Cl)cc2c2c(c2c1OCC(NC(=O)CNCc1ccccc1)CC1)CC2
+COc1cc(C)cc2n(CCCNCC(=O)Nc3cc(C)nc(-c4cc(F
+ ```
+ I hope you enjoyed coding up with molecular Generation!
