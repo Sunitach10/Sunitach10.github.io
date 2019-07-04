@@ -202,7 +202,7 @@ batch_size = 32
 seq_length = 50
 n_epochs = 1 
 # start smaller if you are just testing initial behavior 
-# train the modeltrain(net, encoded, epochs=n_epochs, batch_size=batch_size, seq_length=seq_length, lr=0.001,print_every=10000)
+train the modeltrain(net, encoded, epochs=n_epochs, batch_size=batch_size, seq_length=seq_length, lr=0.001,print_every=10000)
 ```
 <b> Part 4:The prediction task </b>
 The input to the model will be a sequence of characters(smiles), and we train the model to predict the output - Since RNN's maintain an internal state that depends on the previously seen elements, given all the characters computed until this moment, what is the next character?After training, we'll create a method (function) to predict the next character from the trained RNN with forward propagation.''' Given a character, predict the next character.
