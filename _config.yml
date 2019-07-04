@@ -13,12 +13,12 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Bayes Labs 
-email: contact@bayeslabs.co
+title: Sunita 
+email: sunitachoudhary103@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
 
-url: "https://bayeslabs.co" # the base hostname & protocol for your site, e.g. http://example.com
-github_username:  bayeslabs
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+github_username:  sunitach10
 
 # Build settings
 markdown: kramdown
