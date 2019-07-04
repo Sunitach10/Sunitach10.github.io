@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Generating Molecules using CharRNN "
-date: 2019-06-27
+date: 2019-06-04
 comments: True
 mathjax: True
 ---
