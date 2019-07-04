@@ -5,7 +5,7 @@ date: 2019-07-04
 comments: True
 mathjax: True
 ---
-<h2>Generating Molecules using CharRNN </h2>
+
 
 Before you dig into details of Recurrent Neural networks, if you are a Beginner I suggest you to read about RNN.
 Note: To go through the article, you must have basic knowledge of neural networks and how Pytorch (a deep learning library) works. 
