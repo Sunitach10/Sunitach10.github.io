@@ -1,0 +1,38 @@
+
+---
+layout: post
+title:  "How to deal the Graph data in Deep learning with Graph Convolution Netwoks(GCN) "
+date: 2019-07-22
+comments: True
+mathjax: True
+---
+<ol>
+ <li>Introduction to Graph Convolution Networks(Why GCN?)</li>
+ <li> A Brief History of GCN </li>
+ <li>Defination-What is graph?</li>
+ <li>What GCN does?</li>
+ </ol>
+ 
+ In previous post (<a href="https://blog.bayeslabs.co/2019/07/04/Generating-Molecules-using-Char-RNN-in-Pytorch.html</a>).
+ I have explained about Generation of molecues using SMILE Dataset. But I want to explore the things if we have to work on Graph dataset.
+ 
+ SMILES strings are generated from a graph-based representation of molecules, thereby working in the original graph space has the benefit of 
+ removing additional overhead. With recent progress in the area of deep learning on graphs, training deep generative models directly on 
+ graph representations becomes a feasible alternative that has been explored in a range of recent works.
+ 
+ <b>Why GCN-</b>
+ Recently, there is increasing interest in extending deep learning approaches for graph data. Driven by the success of deep learning, researchers have borrowed ideas from convolution networks, 
+ recurrent networks, and deep autoencoders to design the architecture of graph neural networks.
+While deep learning has achieved great success on Euclidean data, there is an increasing number of applications where data are generated from the
+non-Euclidean domain and need to be effectively analyzed. For instance, in e-commerce, a graph-based learning system is able to exploit the
+interactions between users and products to make highly accurate recommendations.
+In chemistry, molecules are modeled as graphs and their bio-activity needs to be identified for drug discovery. User data on social networks,
+gene data on biological regulatory networks, log data on telecommunication networks, or text documents on word embeddings are important examples 
+of data lying on irregular or non-Euclidean domains that can be structured with graphs. which are universal representations of heterogeneous pair wise relationships. 
+Graphs can encode complex geometric structures and can be studied with strong mathematical tools such as spectral graph theory (<a href="https://arxiv.org/pdf/1901.00596.pdf"</a>). 
+The complexity of graph data has imposed significant challenges on existing machine learning algorithms. This is because graph data are irregular. Each graph has a variable size of 
+unordered nodes and each node in a graph has a different number of neighbors, causing some important operations (e.g., convolutions), 
+which are easy to compute in the image domain but are not directly applicable to the graph domain anymore.
+To handle the complexity of graph data, new generalizations and definitions for important operations have been rapidly developed over the past few years. 
+For instance, Below Figure illustrates how a kind of graph convolution is inspired by a standard 2D convolution. This survey aims to provide a comprehensive overview of these methods, 
+for both interested researchers who want to enter this rapidly developing field and experts who would like to compare graph neural network algorithms.
