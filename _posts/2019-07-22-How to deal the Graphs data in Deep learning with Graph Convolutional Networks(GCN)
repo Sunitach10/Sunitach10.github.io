@@ -36,3 +36,4 @@ which are easy to compute in the image domain but are not directly applicable to
 To handle the complexity of graph data, new generalizations and definitions for important operations have been rapidly developed over the past few years. 
 For instance, Below Figure illustrates how a kind of graph convolution is inspired by a standard 2D convolution. This survey aims to provide a comprehensive overview of these methods, 
 for both interested researchers who want to enter this rapidly developing field and experts who would like to compare graph neural network algorithms.
+{%include image.html url="/assets/img/smiles.png" description="Examples of molecule and It's SMILES representation. To correctly create smiles, the model has to learn long-term dependencies, for example, to close rings (indicated by numbers) and brackets." %}
