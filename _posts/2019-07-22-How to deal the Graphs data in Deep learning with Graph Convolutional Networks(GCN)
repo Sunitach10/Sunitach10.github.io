@@ -54,12 +54,15 @@ Many network embedding algorithms are typically unsupervised algorithms and they
 The deep learning approaches for network embedding at the same time belong to graph neural networks, 
 which include graph autoencoder-based algorithms (e.g., DNGR and SDNE ) and graph convolution neural networks with unsupervised training(e.g., GraphSage ).
 <b> DEFINITION –What is Graph-</b>
-A graph G can be well described by the set of vertices V and E.
-<b> G=(V,E),where V is the set of nodes, E is the set of edges.</b>
-Edges can be either directed or undirected, depending on whether there exist directional dependencies between vertices, eij = (vi , vj ) ∈ E to denote an edge .
-The degree of a node is the number of edges connected to it. The vertices are often called nodes, let vi ∈ V to denote a node.
+A graph $G$ can be well described by the set of vertices $V$ and $E$.
+<b> $$G=(V,E)$$,where $V$ is the set of nodes, $E$ is the set of edges.</b>
+Edges can be either directed or undirected, depending on whether there exist directional dependencies between vertices, $eij = (vi , vj ) ∈ E $to denote an edge .
+The degree of a node is the number of edges connected to it. The vertices are often called nodes, let $vi ∈ V$ to denote a node.
 a GCN takes as input-
-An input feature matrix xi, for every node i; summarized in a N×D feature matrix X, (N: number of nodes, D: number of input features)
-A description of the graph structure in matrix form; typically in the form of an adjacency matrix A (or some function thereof),.The adjacency matrix A of size N×N, where . Ai,j = 1 if there is an edge from vertex vi to vertex vj , and Ai,j = 0 otherwise.In this case, we say that vertex vi has position i in A. Moreover, if Ai,j = 1 we say vi and vj are adjacent
+An input feature matrix $xi,$ for every node $i$; summarized in a $N×D$ feature matrix $X$, ($N$: number of nodes, $D$: number of input features)
+A description of the graph structure in matrix form; typically in the form of an adjacency matrix $A$ (or some function thereof),.The adjacency matrix $A$ of size $N×N,$ where .$ Ai,j = 1 $if there is an edge from vertex $vi$ to vertex $vj , and Ai,j = 0 $ otherwise.In this case, we say that vertex $vi$ has position $i$ in A. Moreover, if Ai,j = 1 we say vi and vj are adjacent
 
 Every neural network layer can then be written as a non-linear function
+                       $$ H <sup>(l+1)</sup>=f(H<sup>(l)<sup>,A),$$
+
+$$w_t = w_{t-1} - \eta (\mu v_{t-1} - \nabla J_t(w_{t-1}))$$
