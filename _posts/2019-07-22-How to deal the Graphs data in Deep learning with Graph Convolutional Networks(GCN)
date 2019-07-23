@@ -54,38 +54,3 @@ Many network embedding algorithms are typically unsupervised algorithms and they
 The deep learning approaches for network embedding at the same time belong to graph neural networks, 
 which include graph autoencoder-based algorithms (e.g., DNGR and SDNE ) and graph convolution neural networks with unsupervised training(e.g., GraphSage ).
 <b> DEFINITION –What is Graph-</b>
-A graph $G$ can be well described by the set of vertices $V$ and $E$.
-<b> $$G=(V,E)$$,where $V$ is the set of nodes, $E$ is the set of edges.</b>
-Edges can be either directed or undirected, depending on whether there exist directional dependencies between vertices, $eij = (vi , vj ) ∈ E $to denote an edge .
-The degree of a node is the number of edges connected to it. The vertices are often called nodes, let $vi ∈ V$ to denote a node.
-a GCN takes as input-
-An input feature matrix $xi,$ for every node $i$; summarized in a $N×D$ feature matrix $X$, ($N$: number of nodes, $D$: number of input features)
-A description of the graph structure in matrix form; typically in the form of an adjacency matrix $A$ (or some function thereof),.The adjacency matrix $A$ of size $N×N,$ where .$ Ai,j = 1 $if there is an edge from vertex $vi$ to vertex $vj , and Ai,j = 0 $ otherwise.In this case, we say that vertex $vi$ has position $i$ in A. Moreover, if Ai,j = 1 we say vi and vj are adjacent
-
-Every neural network layer can then be written as a non-linear function
-                       $$ H <sup>(l+1)</sup>=f(H<sup>(l)</sup>,A),$$
-
-with $H(0)=X$ and $H(l)=Z$ (or $Z$ for graph-level outputs), $l$ being the number of layers, $f$ is a propagation rule. Each layer $H (l)$corresponds to an $N ×D(l)$ feature matrix where each row is a feature representation of a node.
-As any other stacked neural layers, GCN can be multiple layers. For each layer,
-$$H<sup>(l+1)</sup>=f(H<sup>(l)</sup>,A),$$
-The input matrix $A$ is the adjacency matrix. If there is a  connection between two nodes, then the element is 1, otherwise 0.
-H<sup>(l)</sup> is the graph-level outputs of layer $l$. In other words, to generate the output for the next layer, we take the current layer as well as the adjacency matrix, then apply a non-linear function $f$.
-The final output of GCN at the laster layer is a matrix $Z$, and the shape is $N*F$. $N$ is the number of nodes, $F$ is the number of output features per node.
- Initially, we need $H(0)  =X$,$X$ here is a matrix with node features with the shape being $N*D$, and $D$ is the number of input features.
-So to start the GCN, we need to provide A and X, eventually the output is Z which is able to provide meaningful embedding for each node in the graph.
-When choosing the function, a simple way is to apply a ReLu and we add a weight matrix W to each layer, then the function becomes:
-H(l+1) = σ (AH(l)W(l))
-At each layer, these features are aggregated to form the next layer's features using the propagation rule f. In this way, features become increasingly more abstract at each consecutive layer.Where, W(l) is a weight matrix for the Lth neural network layer and σ(⋅) is a non-linear activation function like the ReLU. The weight matrix has dimensions Fl ×Fl+1 ; in other words the size of the second dimension of the weight matrix determines the number of features at the next layer.
-However, simply by multiplying with adjacency matrix A may lead to two problems.The first one is the adjacency matrix is not considering itself for each node unless it is self-connected, multiplication with A means that, for every node, we sum up all the feature vectors of all neighboring nodes but not the node itself (unless there are self-loops in the graph). In this case, we force the diagonal elements to be 1, or add an identity matrix I into A. 
-A^ =A+I
-Since the node is now a neighbor of itself, the node's own features is included when summing up the features of its neighbors!
-The second major limitation is that A is typically not normalized and therefore the multiplication with A will completely change the scale of the feature vectors-The feature representations can be normalized by node degree by transforming the adjacency matrix A by multiplying it with the inverse degree matrix D –
-D = np.array(np.sum(A, axis=0))[0]
- D = np.matrix(np.diag(D))
-Normalizing A such that all rows sum to one, i.e. D-1A, where D is the diagonal node degree matrix, gets rid of this problem. Multiplying with D -1A , now corresponds to taking the average of neighboring node features. turning the aggregate into a mean where the scale of the aggregated feature representation is invariant to node degree.
-The representation of each node (each row) is now a sum of its neighbors features!
-In other words, the graph convolutional layer represents each node as an aggregate of its neighborhood.
-In practice, dynamics get more interesting when we use a symmetric normalization, i.e. D -1/2AD-1/2 (as this no longer amounts to merge averaging of neighboring nodes). Combining these two tricks, we essentially arrive at the propagation rule:
-f(H(l),A)=σ(D^-1/2A^ D^-1/2H (l)W(l)),
-with A^=A+I, where I is the identity matrix and D^ is the diagonal node degree matrix of A^.
-Where, the weight matrix can be learned during training.
