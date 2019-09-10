@@ -24,7 +24,7 @@ The KIBA data set originally comprised 229 proteins and 2111 drugs but due to ou
 <b>Data Input representation to the model: </b>
 We used one-hot encoding that uses binary integers (0, 1) for the ligand (characters) and protein (characters) to represent inputs Since Both SMILES (Len<50) and protein sequences (Len<600) have varying lengths. Hence, in order to create an effective representation form (one-hot encoding), we decided to fixed maximum lengths of 50(characters) for SMILES and 600(characters) for protein sequences in our data-set.
 Final one-hot representation of ligands and proteins having dimension of (62x50) and (25x600) respectively. Here 62 and 25 are unique characters from SMILES (ligand) and proteins respectively.
-<b>For more details refer this article:</b>:<a href="https://arxiv.org/abs/1801.10193">Visit this link</a>
+<b>For more details refer this article:</b>:<a> href="https://arxiv.org/abs/1801.10193"</a>
 
 <b>Model Preparation:</b>
 In this article we treated protein-ligand interaction prediction as a regression problem by aiming to predict the binding affinity scores and used deep learning architecture, Convolutional Neural Network (CNN).
