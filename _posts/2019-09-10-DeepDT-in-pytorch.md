@@ -18,21 +18,26 @@ and biological textual sequence information to predict binding affinity
 <b>(Binding affinity provide information on the strength of the interaction between a drug-target (DT) pair)</b>.
 
 <b> Data-sets:</b>
+
 Model evaluation is done on KIBA data-set (kinase inhibitors bio-active data) in which kinase inhibitor bio-activities from different sources were combined.
 The KIBA data set originally comprised 229 proteins and 2111 drugs but due to our resource constrains(i.e. for more data to perform it requires GPU environment but we are using CPU environment) we filtered the data-set based on length of ligands and proteins. The constrains of length of every ligand sequence is 50(characters) and for every protein sequence it is 600(characters), now our data-set contains 111 proteins and 810 ligands and corresponding affinity values.
 
 <b>Data Input representation to the model: </b>
+
 We used one-hot encoding that uses binary integers (0, 1) for the ligand (characters) and protein (characters) to represent inputs Since Both SMILES (Len<50) and protein sequences (Len<600) have varying lengths. Hence, in order to create an effective representation form (one-hot encoding), we decided to fixed maximum lengths of 50(characters) for SMILES and 600(characters) for protein sequences in our data-set.
 Final one-hot representation of ligands and proteins having dimension of (62x50) and (25x600) respectively. Here 62 and 25 are unique characters from SMILES (ligand) and proteins respectively.
 <b>For more details refer this article:</b>:<a> href="https://arxiv.org/abs/1801.10193"</a>
 
 <b>Model Preparation:</b>
+
 In this article we treated protein-ligand interaction prediction as a regression problem by aiming to predict the binding affinity scores and used deep learning architecture, Convolutional Neural Network (CNN).
 For this problem set (i.e. for ligands and proteins) we build a CNN-based prediction model that comprises two separate CNN blocks, each of which aims to learn representations from SMILES strings and protein sequences separately. For each CNN block the number of filters is 16 in first and 32 in the second convolutional layer then followed by the max-pooling layer. The final features of the max-pooling layers were concatenated and fed into two FC layers with a dropout layer (rate=0.15), which we named as DeepDTA.
 Ø Activation function used: Rectified Linear Unit (ReLU).
 Ø Loss function used: Root mean squared error (RMSE).
 <b>The proposed model that combines two CNN blocks is illustrated below:</b>
+
 {% include image.html url="/assets/img/deep_dta_pic.png" description="DeepDTA model Architecture" %}
+<b>CNN based DeepDTA model</b>
 ```python
 #########MODEL
 import data
