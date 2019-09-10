@@ -7,7 +7,7 @@ mathjax: True
 ---
 <b>**</b> Discovery of potential drugs for new targets is an expensive and time consuming process so we can use deep learning in the pipeline of 
 drug-discovery to save the time and cost.<b>**</b>
-In previous blog:<a href="https://github.com/Sunitach10/Sunitach10.github.io/blob/master/_posts/2019-09-10-DeepDT-in-pytorch.md"</a>,I wrote about use of deep learning architecture in identification of drug-target interactions (DTI) strength
+In previous blog:(<a href="https://github.com/Sunitach10/Sunitach10.github.io/blob/master/_posts/2019-09-10-DeepDT-in-pytorch.md"this </a>),I wrote about use of deep learning architecture in identification of drug-target interactions (DTI) strength
 (binding affinity) using character-based sequence representation approach.
 
 The successful identification of drug–target interactions (DTI) is a critical step in drug discovery. 
