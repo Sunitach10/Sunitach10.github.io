@@ -32,7 +32,8 @@ For this problem set (i.e. for ligands and proteins) we build a CNN-based predic
 Ø Activation function used: Rectified Linear Unit (ReLU).
 Ø Loss function used: Root mean squared error (RMSE).
 <b>The proposed model that combines two CNN blocks is illustrated below:</b>
-.......................
+{% include image.html url="/assets/img/1rnn.png" description="Unrolled RNN Architecture" %}
+
 
 <b>Training:</b>
 For training and loss calculation we used Adam optimizer and RMSE loss function respectively.
