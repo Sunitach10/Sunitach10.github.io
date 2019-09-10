@@ -134,7 +134,7 @@ modelw
 if __name__ == '__main__':
     print(modelw)
 ```
+For training the Model we have used Adam Optimizer and RMSE loss.(For full code on Github:<a href=" ...........">visit this </a>)
 
-
-
-
+ This is a deep-learning based approach to predict drug-target binding affinity, which we refer to as WideDTA.
+ I hope you enjoyed coding up with Deeplearning.
