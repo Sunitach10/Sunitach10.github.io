@@ -83,6 +83,7 @@ We built a CNN-based model in Pytorch library, which we call <b>WideDTA</b>, tha
 In our CNN Model, for each text-based information module, we used two 1D-convolutional layers with a max pooling layer on top and Rectified Linear Unit (RELU) as the activation function. We used 16 filters in the first CNN layer and 32 in the second CNN layer in order to capture more specific patterns.
 
 We followed this architecture and built three separate CNN Block for protein sequence, ligands, and motif/domain information. Features extracted from these blocks were concatenated and fed into three fully connected layers , which had two drop-out layers in between (value of 0.3) to prevent over-fitting.
+{% include image.html url="/assets/img/wide model.png" description="Combination of CNN modules constructs the WideDTA architecture." %}
 
 
 
