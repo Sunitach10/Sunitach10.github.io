@@ -31,12 +31,16 @@ Final one-hot representation of ligands and proteins having dimension of (62x50)
 <b>Model Preparation:</b>
 
 In this article we treated protein-ligand interaction prediction as a regression problem by aiming to predict the binding affinity scores and used deep learning architecture, Convolutional Neural Network (CNN).
-For this problem set (i.e. for ligands and proteins) we build a CNN-based prediction model that comprises two separate CNN blocks, each of which aims to learn representations from SMILES strings and protein sequences separately. For each CNN block the number of filters is 16 in first and 32 in the second convolutional layer then followed by the max-pooling layer. The final features of the max-pooling layers were concatenated and fed into two FC layers with a dropout layer (rate=0.15), which we named as DeepDTA.
-Ø Activation function used: Rectified Linear Unit (ReLU).
-Ø Loss function used: Root mean squared error (RMSE).
-<b>The proposed model that combines two CNN blocks is illustrated below:</b>
+For this problem set (i.e. for ligands and proteins) we build a CNN-based prediction model that comprises two separate CNN blocks, each of which aims to learn representations from SMILES strings and protein sequences separately. For each CNN block the number of filters is 16 in first and 32 in the second convolutional layer then followed by the max-pooling layer. The final features of the max-pooling layers were concatenated and fed into two FC layers with a dropout layer (rate=0.15), which we named as DeepDTA. 
 
+<ol>
+ <li>Activation function used: Rectified Linear Unit (ReLU).</li>
+ <li>Loss function used: Root mean squared error (RMSE).</li>
+ </ol>
+
+<b>The proposed model that combines two CNN blocks is illustrated below:</b>
 {% include image.html url="/assets/img/deep_dta_pic.png" description="DeepDTA model Architecture" %}
+
 <b>CNN based DeepDTA model</b>
 ```python
 #########MODEL
@@ -78,10 +82,12 @@ if __name__ == '__main__':
     print(model2)
 ```
 <b>Training:</b>
+
 For training and loss calculation we used Adam optimizer and RMSE loss function respectively.
 for more details visit this github link:-
 
 <b>Conclusion:</b>
+
 when two CNN-blocks that learn representation of proteins and drugs based on raw sequence data are used in conjunction with DeepDTA, the performance is significantly considerable.
 
 
