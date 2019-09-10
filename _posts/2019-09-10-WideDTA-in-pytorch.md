@@ -76,6 +76,16 @@ class widedata(Dataset):
         return self.mpmy[idx]
 dataset = widedata(ligand_path, protein_path,keys,motif_path,affinity_path)
 ```
+<b> PREDICTION MODEL- </b>
+We built a CNN-based model in Pytorch library, which we call <b>WideDTA</b>, that combines at most three pieces of different textual information. architecture of model is similar to the CNN-based (DeepDTA blog on Github:<a href=" ...........">refer this </a>). The difference is that DeepDTA is a character based model, whereas WideDTA depends on words as input.
+
+<b> Model Architecture- </b> 
+In our CNN Model, for each text-based information module, we used two 1D-convolutional layers with a max pooling layer on top and Rectified Linear Unit (RELU) as the activation function. We used 16 filters in the first CNN layer and 32 in the second CNN layer in order to capture more specific patterns.
+
+We followed this architecture and built three separate CNN Block for protein sequence, ligands, and motif/domain information. Features extracted from these blocks were concatenated and fed into three fully connected layers , which had two drop-out layers in between (value of 0.3) to prevent over-fitting.
+
+
+
 
 
 
