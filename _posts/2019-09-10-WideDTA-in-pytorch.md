@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "WideDTA:Way to predict Drug-target binding affinity using Convolution Neural Network in Drug Discovery Process-Model2"
+title:  "WideDTA:Way to predict Drug-target binding affinity using CNN in Drug Discovery Process-Model2"
 date: 2019-09-10
 comments: True
 mathjax: True
